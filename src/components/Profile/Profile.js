@@ -45,7 +45,7 @@ const Profile = (props) => {
 			<Query query={queryUserInfo} variables={{ id: userId }}>
 				{({ loading, error, data  }) => {
 					if (loading) return "Loading...";
-					if (error) return `Query Failed: ${error}`;
+					if (error) return <Redirect to="/error"/>
 
 					return (
 						<>

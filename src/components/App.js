@@ -13,7 +13,8 @@ import Profile from "./Profile/Profile"
 import Auth from "./Auth/Auth"
 import Upload from "./Upload/Upload"
 import Loading from "./Loading/Loading"
-import Error from "./Error"
+import Error from "./Error/Error"
+import NotFound from "./Error/NotFound"
 
 const App = () => {
 	let [currentUser, setCurrentUser] = useState("")
@@ -51,7 +52,8 @@ const App = () => {
 				                                            user={currentUser}/>}/>
 				<Route path="/profile" render={(props) => <Profile {...props} user={currentUser}  handleLogout={handleLogout} />}/>
 				<Route path="/create" render={() => <Upload userId={currentUser._id}/> } />
-				<Route path="*" component={Error} />
+				<Route path="*" component={NotFound} />
+				<Route path="/error" component={Error} />
 			</Switch>
 			<BottomNav/>
 		</div>
