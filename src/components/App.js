@@ -50,8 +50,8 @@ const App = () => {
 				<Route exact path="/" component={Video}/>
 				<Route exact path="/auth" render={(props) => <Auth {...props} nowCurrentUser={nowCurrentUser}
 				                                            user={currentUser}/>}/>
-				<Route path="/profile" render={(props) => <Profile {...props} user={currentUser}  handleLogout={handleLogout} />}/>
-				<Route path="/create" render={() => <Upload userId={currentUser._id}/> } />
+				<Route exact path="/profile" render={(props) => <Profile {...props} user={currentUser}  handleLogout={handleLogout} />}/>
+				<Route exact path="/create" render={() => <Upload userId={currentUser._id}/> } />
 				<Route path="*" component={NotFound} />
 				<Route path="/error" component={Error} />
 			</Switch>
