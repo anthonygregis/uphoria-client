@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/ShowVideo.css'
 
 const ShowVideo = (props) => {
     let video = props.location.video
