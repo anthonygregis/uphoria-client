@@ -13,6 +13,7 @@ import Loading from "./Loading/Loading"
 import Error from "./Error"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
+import ShowVideo from "./Profile/ShowVideo"
 
 const App = () => {
   let [currentUser, setCurrentUser] = useState("")
@@ -60,21 +61,21 @@ const App = () => {
     <div className="App">
       <Switch>
         <Route exact path="/" render={() => (
-			<Query query={queryVideos}>
-				{({ loading, error, data }) => {
-					if (loading) return <Loading />;
-					if (error) return <Error errorMessage={error.message} />;
+          <Query query={queryVideos}>
+            {({ loading, error, data }) => {
+              if (loading) return <Loading />;
+              if (error) return <Error errorMessage={error.message} />;
 
-				let videos = data.videos.map((video) => {
-					return (
-						<Video video={video} />
-					)
-				})
+            let videos = data.videos.map((video) => {
+              return (
+                <Video video={video} />
+              )
+            })
 
-				return videos
-				}}
-			</Query>
-		)} />
+            return videos
+            }}
+          </Query>
+        )} />
         <Route
           exact
           path="/auth"
@@ -101,6 +102,7 @@ const App = () => {
           render={() => <Upload userId={currentUser._id} />}
         />
         <Route path="/edit" render={(props) => <ProfileEdit {...props} handleLogout={handleLogout}/>} />
+        <Route path="/showvideo" render= {(props) => <ShowVideo {...props}/>} />
         <Route path="*" component={Error} />
       </Switch>
       <BottomNav />

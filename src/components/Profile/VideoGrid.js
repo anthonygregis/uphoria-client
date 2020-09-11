@@ -1,6 +1,8 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
+import {Link} from 'react-router-dom'
+import UserVideos from './UserVideos'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,28 +27,23 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const VideoGrid = (props) => {
+  console.log(props.user)
   const classes = useStyles()
   let videos = []
   let newVideos = []
 
   const FormRow = () => {
-    while (videos < props.videos.length) {
-      props.videos.forEach((video) => {
+    while (videos < props.user.videos.length) {
+      props.user.videos.forEach((video) => {
         videos.push(video)
       })
     }
     let i
     for (i = 0; i < videos.length; i++) {
       newVideos.push(
-        <Grid key={videos[i].id} className={classes.item} item xs={4} p={0} m={0}>
-          <video
-            src={`https://res.cloudinary.com/agregis/video/upload/e_boomerang/eo_1/c_scale,g_south_west,l_logo_transparent_wvrps0,w_144/${videos[i].videoUrl}.mp4`}
-            autoPlay={true}
-            loop={true}
-            muted
-            className={classes.video}
-          />
-        </Grid>
+          <Grid key={videos[i].id} className={classes.item} item xs={4} p={0} m={0}>
+            <UserVideos video={videos[i]} className={classes.video} user={props.user} />
+          </Grid>
       )
     }
     return newVideos

@@ -73,8 +73,8 @@ const Profile = (props) => {
             <>
               <Logout handleLogout={props.handleLogout} />
               <UserInfo user={{ ...data.user }} />
-
-              <VideoGrid videos={data.user.videos} />
+              {console.log(data.user)}
+              <VideoGrid user={data.user}/>
             </>
           )
         }}
